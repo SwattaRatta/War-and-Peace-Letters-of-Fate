@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>War & Peace: Letters of Fate</title>
+
+  <!-- Elegant fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================ START MENU ================ -->
+  <section id="menu" class="screen">
+    <h1>WAR & PEACE</h1>
+    <h2>Letters of Fate</h2>
+    <p class="subtitle">Your words will decide the fate of nations...</p>
+
+    <div class="menu-buttons">
+      <button id="start-button">Start Game</button>
+      <button id="settings-button">Settings</button>
+      <button id="quit-button">Quit</button>
+    </div>
+  </section>
+
+  <!-- ================ PROLOGUE LETTER ================ -->
+  <section id="prologue" class="screen hidden">
+    <div class="parchment">
+      <div class="wax-seal">A·P</div>
+      <h3 class="calligraphy">An Invitation</h3>
+      <p id="letterText" class="letter-body"></p>
+
+      <div class="prologue-actions">
+        <button id="continue-button" class="primary">Accept Invitation</button>
+        <button id="skip-typing" class="ghost">Skip typing</button>
+        <button id="back-to-menu" class="ghost">Back to Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================ CHARACTER SETUP ================ -->
+  <section id="char-setup" class="screen hidden">
+    <h2 class="section-title">Who are you this evening?</h2>
+    <p class="section-sub">Choose a role. Your letters, loves, and loyalties will shape the war.</p>
+
+    <div id="roleGrid" class="cards"></div>
+
+    <div id="roleDetails" class="role-details hidden">
+      <h3 id="roleName"></h3>
+      <p id="roleBlurb" class="role-blurb"></p>
+      <div id="statList" class="stats"></div>
+
+      <div class="actions">
+        <button id="begin-button" class="primary" disabled>Begin Correspondence</button>
+        <button id="char-back" class="ghost">Back</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================ FIRST LETTER (BOONS & DICE) ================ -->
+  <section id="letter-scene" class="screen hidden">
+    <h2 class="section-title">Compose Your Reply to Anna Pavlovna</h2>
+    <p class="section-sub">Roll your fortunes, choose your tone, and let your pen set fates in motion.</p>
+
+    <div class="boon-bar">
+      <button id="roll-boons" class="primary">Roll 3 Boons 🎲</button>
+      <span id="roll-note" class="roll-note">Each run grants three artifacts with unique buffs.</span>
+    </div>
+
+    <div id="boonRow" class="boon-cards"></div>
+
+    <div class="parchment letter-compose">
+      <h3 class="calligraphy">Your Letter</h3>
+
+      <div class="tone-row">
+        <label>Choose your tone:</label>
+        <div class="tone-buttons">
+          <button class="tone-btn" data-tone="Charm" title="Warmth, wit, allure">Charming</button>
+          <button class="tone-btn" data-tone="Tact" title="Diplomacy, grace, courtesy">Diplomatic</button>
+          <button class="tone-btn" data-tone="Insight" title="Perception, nuance, shrewdness">Incisive</button>
+          <button class="tone-btn" data-tone="Nerve" title="Boldness, resolve, daring">Bold</button>
+        </div>
+      </div>
+
+      <textarea id="letterInput" class="letter-area" rows="10" placeholder="Begin your reply…"></textarea>
+
+      <div class="compose-actions">
+        <div class="score-readout">
+          <span>Base Stat: <strong id="baseStat">—</strong></span>
+          <span>Boons: <strong id="boonTotal">+0</strong></span>
+          <span>Inspiration d6: <strong id="inspoDie">—</strong></span>
+          <span class="total">Total: <strong id="totalScore">—</strong></span>
+        </div>
+        <div class="buttons">
+          <button id="roll-inspo" class="ghost">Roll Inspiration d6</button>
+          <button id="send-letter" class="primary" disabled>Seal & Send ✉️</button>
+          <button id="back-to-roles" class="ghost">Back</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result hidden">
+      <h3 id="resultTitle"></h3>
+      <p id="resultText"></p>
+      <button id="continue-from-result" class="primary">Proceed to the Salon</button>
+    </div>
+  </section>
+
+  <!-- ================ SALON ENCOUNTERS (D20) ================ -->
+  <section id="salon" class="screen hidden">
+    <h2 class="section-title">Anna Pavlovna’s Salon</h2>
+    <p class="section-sub">Conversations bloom like roses. Choose where to stand—and what to say.</p>
+
+    <div class="limits"><span>Encounters remaining: <strong id="encLeft">2</strong></span></div>
+
+    <div id="encounterGrid" class="cards"></div>
+
+    <div id="encounterPanel" class="role-details hidden">
+      <h3 id="encTitle"></h3>
+      <p id="encBlurb" class="role-blurb"></p>
+
+      <div class="stats">
+        <span class="stat">Approach: <strong id="encApproach">—</strong></span>
+        <span class="stat">DC: <strong id="encDC">—</strong></span>
+      </div>
+
+      <div class="actions">
+        <button id="roll-d20" class="primary">Roll d20</button>
+        <button id="salon-back" class="ghost">Back to Ballroom</button>
+      </div>
+
+      <div id="encResult" class="result hidden">
+        <h3 id="encOutcomeTitle"></h3>
+        <p id="encOutcomeText"></p>
+      </div>
+    </div>
+
+    <div class="actions end-row">
+      <button id="end-evening" class="primary" disabled>Conclude the Evening</button>
+      <button id="salon-to-menu" class="ghost">Quit to Menu</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
